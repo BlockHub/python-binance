@@ -85,7 +85,7 @@ class Client(object):
     AGG_BUYER_MAKES = 'm'
     AGG_BEST_MATCH = 'M'
 
-    def __init__(self, api_key, api_secret, requests_params=None):
+    def __init__(self, api_key, api_secret, requests_params=None, conn_timeout=2, read_timout=2):
         """Binance API Client constructor
 
         :param api_key: Api Key
@@ -96,7 +96,8 @@ class Client(object):
         :type requests_params: dict.
 
         """
-
+        self.conn_timout = conn_timeout
+        self.read_timout = read_timout
         self.API_KEY = api_key
         self.API_SECRET = api_secret
         self.session = self._init_session()
@@ -112,7 +113,10 @@ class Client(object):
                 'Accept': 'application/json',
                 'User-Agent': 'binance/python',
                 'X-MBX-APIKEY': self.API_KEY
-            })
+            },
+            conn_timeout=self.conn_timout,
+            read_timeout=self.read_timout,
+        )
 
         return session
 
