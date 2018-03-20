@@ -158,13 +158,12 @@ class Client(object):
         return params
 
     async def fetch(self, method, uri, **kwargs):
-        async with async_timeout.timeout(10):
-            async with getattr(self.session, method)(uri, **kwargs) as response:
-                status = response.status
-                json = await response.json()
-                text = await response.text()
-                res = Response(status, json, text)
-                return res
+        async with getattr(self.session, method)(uri, **kwargs) as response:
+            status = response.status
+            json = await response.json()
+            text = await response.text()
+            res = Response(status, json, text)
+            return res
 
     async def _request(self, method, uri, signed, force_params=False, **kwargs):
 
