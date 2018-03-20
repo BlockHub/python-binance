@@ -3,7 +3,7 @@ from setuptools import setup
 
 setup(
     name='python-binance-aio',
-    version='0.0.2',
+    version='0.0.3',
     packages=['aiobinance'],
     description='Asynchronous Binance REST API python implementation',
     url='https://github.com/BlockHub/python-binance-aio',
