@@ -199,7 +199,6 @@ class Client(object):
             del(kwargs['data'])
 
         response = await self.fetch(method, uri, **kwargs)
-        print(response)
         return self._handle_response(response)
 
     async def _request_api(self, method, path, signed=False, version=PUBLIC_API_VERSION, **kwargs):
